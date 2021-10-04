@@ -15,7 +15,7 @@ function Favotites(): JSX.Element {
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <a className="locations__item-link" href="#">
+                    <a className="locations__item-link" href="/">
                       <span>Amsterdam</span>
                     </a>
                   </div>
@@ -29,7 +29,7 @@ function Favotites(): JSX.Element {
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <a className="locations__item-link" href="#">
+                    <a className="locations__item-link" href="/">
                       <span>Cologne</span>
                     </a>
                   </div>
