@@ -1,9 +1,12 @@
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {AppRoute} from '../../const';
 import MainPage from '../main-page/main-page';
 // import MainEmpty from '../main-empty/main-empty';
 // import FavoritesEmpty from '../favorites-empty/favorites-empty';
-// import Favorites from '../favorites/favorites';
-// import Login from '../login/login';
-// import Property from '../property/property';
+import Favorites from '../favorites/favorites';
+import Login from '../login/login';
+import NotFound from '../not-found/not-found';
+import Property from '../property/property';
 
 
 type AppScreenProps = {
@@ -12,12 +15,27 @@ type AppScreenProps = {
 
 function App({ offersCount }: AppScreenProps): JSX.Element {
   return (
-    <MainPage offersCount={offersCount} />
-    // <FavoritesEmpty />
-    // <MainEmpty />
-    // <Favorites />
-    // <Login />
-    // <Property />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={AppRoute.Main}>
+          <MainPage
+            offersCount={offersCount}
+          />
+        </Route>
+        <Route exact path={AppRoute.SignIn}>
+          <Login />
+        </Route>
+        <Route exact path={AppRoute.Favorites}>
+          <Favorites />
+        </Route>
+        <Route exact path={AppRoute.Room}>
+          <Property />
+        </Route>
+        <Route>
+          <NotFound />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
