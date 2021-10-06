@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 function Navigation(): JSX.Element {
   return (
     <nav className="header__nav">
@@ -10,9 +12,9 @@ function Navigation(): JSX.Element {
           </a>
         </li>
         <li className="header__nav-item">
-          <a className="header__nav-link" href="/">
+          <Link className="header__nav-link" to="/">
             <span className="header__signout">Sign out</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
