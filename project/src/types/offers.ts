@@ -38,3 +38,6 @@ export type OfferHost = {
     isPro: boolean,
     name: string,
 };
+
+
+export type Offers = Offer[];

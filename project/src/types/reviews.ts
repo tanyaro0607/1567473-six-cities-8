@@ -12,3 +12,5 @@ export type ReviewUser = {
   isPro: boolean,
   name: string,
 };
+
+export type Reviews = Review[];

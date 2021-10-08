@@ -1,6 +1,6 @@
-import {Review} from '../types/reviews';
+import {Reviews} from '../types/reviews';
 
-export const reviews: Review[] = [
+export const reviews: Reviews = [
   {
     comment:
       'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
