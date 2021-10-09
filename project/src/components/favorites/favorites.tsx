@@ -1,4 +1,4 @@
-import PlaceCard from '../place-card/place-card';
+import OfferCard from '../offer-card/offer-card';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 
@@ -21,8 +21,8 @@ function Favotites(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <PlaceCard/>
-                  <PlaceCard/>
+                  <OfferCard/>
+                  <OfferCard/>
                 </div>
               </li>
 
@@ -35,7 +35,7 @@ function Favotites(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <PlaceCard/>
+                  <OfferCard/>
                 </div>
               </li>
             </ul>

@@ -1,5 +1,6 @@
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
+// import {AppRoute} from '../../const';
 import MainPage from '../main-page/main-page';
 // import MainEmpty from '../main-empty/main-empty';
 // import FavoritesEmpty from '../favorites-empty/favorites-empty';
@@ -36,6 +37,9 @@ function App({ offersCount, offers, reviews }: AppScreenProps): JSX.Element {
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
+        {/* <Route exact path={AppRoute.Favorites}>
+          <Favorites />
+        </Route> */}
         <Route exact path={AppRoute.Room}>
           <Property />
         </Route>
