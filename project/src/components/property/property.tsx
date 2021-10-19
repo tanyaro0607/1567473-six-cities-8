@@ -1,6 +1,8 @@
 // import OfferCard from '../offer-card/offer-card';
 import Header from '../header/header';
-import Review from '../review/review';
+import SubmitFormReview from '../submit-form-review/submit-form-review';
+// import Review from '../review/review';
+
 
 function Property(): JSX.Element {
   return (
@@ -152,7 +154,7 @@ function Property(): JSX.Element {
                     </div>
                   </li>
                 </ul>
-                <Review />
+                <SubmitFormReview />
               </section>
             </div>
           </div>
