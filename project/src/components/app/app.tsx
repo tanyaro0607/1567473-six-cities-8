@@ -9,23 +9,20 @@ import Login from '../login/login';
 import NotFound from '../not-found/not-found';
 import Property from '../property/property';
 import PrivateRoute from '../private-route/private-route';
-import {Reviews} from '../../types/review';
-import {Offers} from '../../types/offer';
+import {ReviewType} from '../../types/review';
+import {OfferType} from '../../types/offer';
 
 type AppScreenProps = {
-  offersCount: number;
-  offers: Offers;
-  reviews: Reviews;
+  offersList: OfferType[];
+  reviewsList: ReviewType[];
 }
 
-function App({ offersCount, offers, reviews }: AppScreenProps): JSX.Element {
+function App({offersList, reviewsList }: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main}>
-          <MainPage
-            offersCount={offersCount}
-          />
+          <MainPage/>
         </Route>
         <Route exact path={AppRoute.SignIn}>
           <Login />

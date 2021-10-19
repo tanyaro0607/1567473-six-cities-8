@@ -3,12 +3,8 @@ import Sort from '../sort/sort';
 import Filter from '../filter/filter';
 import Header from '../header/header';
 
-//псевдоним типа
-type MainPageProps = {
-  offersCount: number;
-}
 
-function MainPage({ offersCount }: MainPageProps): JSX.Element {
+function MainPage(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -19,7 +15,7 @@ function MainPage({ offersCount }: MainPageProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+              <b className="places__found">312 places to stay in Amsterdam</b>
               <Sort />
               <div className="cities__places-list places__list tabs__content">
                 <OfferCard/>

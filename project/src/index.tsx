@@ -4,16 +4,11 @@ import App from './components/app/app';
 import {offers} from './mocks/offers';
 import {reviews} from './mocks/reviews';
 
-const Setting = {
-  OFFERS_COUNT: 5,
-};
-
 ReactDOM.render(
   <React.StrictMode>
     <App
-      offersCount = {Setting.OFFERS_COUNT}
-      offers = {offers} //передаем моки
-      reviews = {reviews}
+      offersList = {offers} //передаем моки
+      reviewsList = {reviews}
     />
   </React.StrictMode>,
   document.getElementById('root'));

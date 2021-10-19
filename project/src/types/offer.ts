@@ -1,4 +1,4 @@
-export type Offer = {
+export type OfferType = {
   bedrooms: number;
   city: OfferCity;
   description: string;
@@ -38,6 +38,3 @@ export type OfferHost = {
     isPro: boolean,
     name: string,
 };
-
-
-export type Offers = Offer[];
