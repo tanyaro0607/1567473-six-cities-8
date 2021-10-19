@@ -7,8 +7,8 @@ import {reviews} from './mocks/reviews';
 ReactDOM.render(
   <React.StrictMode>
     <App
-      offersList = {offers} //передаем моки
-      reviewsList = {reviews}
+      offers= {offers} //передаем моки
+      reviews = {reviews}
     />
   </React.StrictMode>,
   document.getElementById('root'));

@@ -1,10 +1,14 @@
-import OfferCard from '../offer-card/offer-card';
 import Sort from '../sort/sort';
 import Filter from '../filter/filter';
 import Header from '../header/header';
+import {OfferType} from '../../types/offer';
+import OffersList from '../offers-list/offers-list';
 
+type MainPageProps = {
+  offers: OfferType[];
+}
 
-function MainPage(): JSX.Element {
+function MainPage({offers}: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -15,14 +19,10 @@ function MainPage(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <Sort />
               <div className="cities__places-list places__list tabs__content">
-                <OfferCard/>
-                <OfferCard/>
-                <OfferCard/>
-                <OfferCard/>
-                <OfferCard/>
+                <OffersList offers={offers}/>
               </div>
             </section>
             <div className="cities__right-section">

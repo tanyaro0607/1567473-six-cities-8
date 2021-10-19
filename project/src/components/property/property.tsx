@@ -1,4 +1,4 @@
-import OfferCard from '../offer-card/offer-card';
+// import OfferCard from '../offer-card/offer-card';
 import Header from '../header/header';
 import Review from '../review/review';
 
@@ -162,9 +162,9 @@ function Property(): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
+              {/* <OfferCard />
               <OfferCard />
-              <OfferCard />
-              <OfferCard />
+              <OfferCard /> */}
             </div>
           </section>
         </div>
