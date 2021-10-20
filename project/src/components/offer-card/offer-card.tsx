@@ -1,10 +1,14 @@
 import {OfferType} from '../../types/offer';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
 
 type OfferCardTypes = {
   offer: OfferType,
+  key: number;
+  onHover: (offer: OfferType) => void;
 }
 
-function OfferCard({offer}: OfferCardTypes): JSX.Element {
+function OfferCard({offer, key, onHover}: OfferCardTypes): JSX.Element {
 
   const {
     isPremium,
@@ -17,15 +21,15 @@ function OfferCard({offer}: OfferCardTypes): JSX.Element {
   } = offer;
 
   return (
-    <article className="cities__place-card place-card">
+    <article key={key} className="cities__place-card place-card" onMouseEnter={() => onHover(offer)}>
       {isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
       </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="/">
+        <Link to={AppRoute.Room}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -47,7 +51,7 @@ function OfferCard({offer}: OfferCardTypes): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">{title}</a>
+          <Link to={AppRoute.Room}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

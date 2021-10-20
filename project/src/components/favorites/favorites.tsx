@@ -1,8 +1,14 @@
 // import OfferCard from '../offer-card/offer-card';
 import Footer from '../footer/footer';
 import Header from '../header/header';
+import {OfferType} from '../../types/offer';
+import OffersList from '../offers-list/offers-list';
 
-function Favotites(): JSX.Element {
+type FavoritesProps = {
+  offers: OfferType[],
+}
+
+function Favotites({ offers }: FavoritesProps): JSX.Element {
   return (
     <div className="page">
       <Header />
@@ -16,26 +22,12 @@ function Favotites(): JSX.Element {
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
                     <a className="locations__item-link" href="/">
-                      <span>Amsterdam</span>
+                      <span>{offers[0].city.name}</span>
                     </a>
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {/* <OfferCard/>
-                  <OfferCard/> */}
-                </div>
-              </li>
-
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="/">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  {/* <OfferCard/> */}
+                  <OffersList offers={offers}/>
                 </div>
               </li>
             </ul>

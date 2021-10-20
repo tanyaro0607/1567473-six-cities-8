@@ -2,9 +2,10 @@ import {ReviewType} from '../../types/review';
 
 type PlaceReviewProps = {
   review: ReviewType,
+  key: number;
 }
 
-function Review({review}: PlaceReviewProps): JSX.Element {
+function Review({review, key}: PlaceReviewProps): JSX.Element {
   const {
     comment,
     date,
@@ -13,7 +14,7 @@ function Review({review}: PlaceReviewProps): JSX.Element {
   } = review;
 
   return (
-    <li className="reviews__item">
+    <li key={key} className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar" src={user.avatarUrl} alt="Reviews avatar" width="54" height="54"/>

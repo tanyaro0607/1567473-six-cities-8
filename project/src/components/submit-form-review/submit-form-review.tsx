@@ -1,6 +1,15 @@
+import { FormEvent} from 'react';
+
 function SubmitFormReview(): JSX.Element {
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form
+      className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={(evt:FormEvent<HTMLFormElement>) => {
+        evt.preventDefault();
+      }}
+    >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
