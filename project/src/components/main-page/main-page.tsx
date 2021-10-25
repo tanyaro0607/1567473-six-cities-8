@@ -3,12 +3,18 @@ import Filter from '../filter/filter';
 import Header from '../header/header';
 import {OfferType} from '../../types/offer';
 import OffersList from '../offers-list/offers-list';
+import Map from '../../components/map/map';
+// import React, {useState} from 'react';
 
 type MainPageProps = {
   offers: OfferType[];
 }
 
 function MainPage({offers}: MainPageProps): JSX.Element {
+
+  // const [selectedPoint, setSelectedPoint] = useState<number | null>(null);
+
+  const city = offers[0].city;
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -26,7 +32,13 @@ function MainPage({offers}: MainPageProps): JSX.Element {
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map
+                  offers={offers}
+                  city={city}
+                  // selectedPoint={selectedPoint}
+                />
+              </section>
             </div>
           </div>
         </div>
