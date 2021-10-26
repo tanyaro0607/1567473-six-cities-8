@@ -4,16 +4,19 @@ import SubmitFormReview from '../submit-form-review/submit-form-review';
 // import Review from '../review/review';
 import {OfferType} from '../../types/offer';
 import {ReviewType} from '../../types/review';
+import Map from '../../components/map/map';
+import OffersList from '../offers-list/offers-list';
 
 type PropertyProps = {
-  offer: OfferType;
+  offers: OfferType[];
   reviews: ReviewType[];
 };
 
 function Property(props: PropertyProps): JSX.Element {
-  const {offer, reviews} = props;
-  const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offer;
+  const {offers, reviews} = props;
+  const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offers[0];
   const ratingMark = 5 * rating / 100;
+  const city = offers[0].city;
 
   return (
     <div className="page">
@@ -119,15 +122,18 @@ function Property(props: PropertyProps): JSX.Element {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <Map
+              offers={offers}
+              city={city}
+            />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {/* <OfferCard />
-              <OfferCard />
-              <OfferCard /> */}
+              <OffersList offers={offers}/>
             </div>
           </section>
         </div>

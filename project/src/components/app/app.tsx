@@ -38,7 +38,7 @@ function App({offers, reviews}: AppScreenProps): JSX.Element {
           <Favorites offers={offers} />
         </Route>
         <Route exact path={AppRoute.Room}>
-          <Property offer={offers[0]} reviews={reviews} />
+          <Property offers={offers} reviews={reviews} />
         </Route>
         <Route>
           <NotFound />

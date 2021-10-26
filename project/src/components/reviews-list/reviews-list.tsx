@@ -1,4 +1,4 @@
-import Review from '../review/review';
+import Review from '../reviews-item/reviews-item';
 import {OfferType} from '../../types/offer';
 import {ReviewType} from '../../types/review';
 
