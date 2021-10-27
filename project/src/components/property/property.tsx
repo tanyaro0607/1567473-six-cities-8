@@ -4,16 +4,20 @@ import SubmitFormReview from '../submit-form-review/submit-form-review';
 // import Review from '../review/review';
 import {OfferType} from '../../types/offer';
 import {ReviewType} from '../../types/review';
+import Map from '../../components/map/map';
+import OffersListNear from '../offers-list-near/offers-list-near';
+import ReviewsList from '../reviews-list/reviews-list';
 
 type PropertyProps = {
-  offer: OfferType;
+  offers: OfferType[];
   reviews: ReviewType[];
 };
 
 function Property(props: PropertyProps): JSX.Element {
-  const {offer, reviews} = props;
-  const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offer;
+  const {offers, reviews} = props;
+  const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offers[0];
   const ratingMark = 5 * rating / 100;
+  const city = offers[0].city;
 
   return (
     <div className="page">
@@ -93,42 +97,22 @@ function Property(props: PropertyProps): JSX.Element {
               </div>
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-                <ul className="reviews__list">
-                  {reviews.map((review) => (
-                    <li key={`${review.id}`} className="reviews__item" id={`${review.id}`}>
-                      <div className="reviews__user user"id={`${review.user.id}`}>
-                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Reviews avatar" />
-                        </div>
-                        <span className="reviews__user-name">{review.user.name}</span>
-                      </div>
-                      <div className="reviews__info">
-                        <div className="reviews__rating rating">
-                          <div className="reviews__stars rating__stars">
-                            <span style={{width: `${review.rating}%`}}></span>
-                            <span className="visually-hidden">Rating</span>
-                          </div>
-                        </div>
-                        <p className="reviews__text">{review.comment}</p>
-                        <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <ReviewsList offer={offers[0]} reviews={reviews} />
                 <SubmitFormReview />
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <Map
+              offers={offers}
+              city={city}
+            />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              {/* <OfferCard />
-              <OfferCard />
-              <OfferCard /> */}
-            </div>
+            <OffersListNear offers={offers}/>
           </section>
         </div>
       </main>
