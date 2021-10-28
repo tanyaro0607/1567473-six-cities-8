@@ -18,4 +18,5 @@ export type FoundOffersAction = {
   payload: OfferType[];
 };
 
+//тип объединения, содержит все возможные действия
 export type Actions = ChangeCityAction | FoundOffersAction;
