@@ -17,9 +17,9 @@ type MainPageProps = {
 }
 
 //ф-я которая позволит настроить связь между пропсами компонента и значениями в хранилище
-const mapStateToProps = ({city, offers}: State) => ({
-  city,
-  offers,
+const mapStateToProps = (state: State) => ({
+  city: state.city,
+  offers: state.offers.filter((offer) => offer.city.name === state.city),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({

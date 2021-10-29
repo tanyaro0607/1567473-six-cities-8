@@ -20,7 +20,7 @@ function CityList({ cityList, selectedCity, setSelectedCity }: CityListProps): J
                 <a
                   className={city.toLowerCase() === selectedCity.toLowerCase() ? activeCityClassList : cityClassList}
                   onClick={() => setSelectedCity(city)}
-                  href='/'
+                  href='#city'
                 >
                   <span>{city}</span>
                 </a>
