@@ -2,7 +2,6 @@ import {Switch, Route, BrowserRouter} from 'react-router-dom';
 // import {AppRoute, AuthorizationStatus} from '../../const';
 import {AppRoute} from '../../const';
 import MainPage from '../main-page/main-page';
-// import MainEmpty from '../main-empty/main-empty';
 // import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import Favorites from '../favorites/favorites';
 import Login from '../login/login';
@@ -22,7 +21,7 @@ function App({offers, reviews}: AppScreenProps): JSX.Element {
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main}>
-          <MainPage offers={offers}/>
+          <MainPage/>
         </Route>
         <Route exact path={AppRoute.SignIn}>
           <Login />
