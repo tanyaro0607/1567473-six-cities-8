@@ -2,17 +2,16 @@ import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
 import useMap from '../../hooks/useMap/useMap';
 import { OfferType, OfferCity } from '../../types/offer';
-// import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
-import { URL_MARKER_DEFAULT } from '../../const';
-import { Icon, Marker } from 'leaflet';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
+import leaflet, { Icon, Marker } from 'leaflet';
 
 type MapProps = {
   city: OfferCity;
   offers: OfferType[];
-  // selectedPoint: OfferType | undefined;
+  selectedPoint?: number,
 }
 
-function Map({offers, city}: MapProps): JSX.Element {
+function Map({offers, city, selectedPoint}: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -23,32 +22,34 @@ function Map({offers, city}: MapProps): JSX.Element {
     iconAnchor: [20, 40],
   });
 
-  // const currentCustomIcon = new Icon({
-  //   iconUrl: URL_MARKER_CURRENT,
-  //   iconSize: [40, 40],
-  //   iconAnchor: [20, 40],
-  // });
+  const currentCustomIcon = new Icon({
+    iconUrl: URL_MARKER_CURRENT,
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+  });
 
   useEffect(() => {
-    if(map) {
+    if (map) {
+      const markers:Marker[] = [];
       offers.forEach((offer) => {
-        const {location} = offer;
-        const marker = new Marker({
-          lat: location.latitude,
-          lng: location.longitude,
-        });
-
-        marker
-          .setIcon(
-            // selectedPoint !== undefined && offer.id === selectedPoint.id
-            // ? currentCustomIcon
-            // : defaultCustomIcon,
-            defaultCustomIcon,
-          )
-          .addTo(map);
+        const marker = leaflet.marker({
+          lat: offer.location.latitude,
+          lng: offer.location.longitude,
+        }, {
+          icon: selectedPoint !== undefined && selectedPoint === offer.id ? currentCustomIcon : defaultCustomIcon,
+        }).addTo(map);
+        markers.push(marker);
       });
+
+      return () => {
+        if(markers.length > 0) {
+          markers.forEach((item, index) => {
+            map.removeLayer(markers[index]);
+          });
+        }
+      };
     }
-  }, [map, offers]);
+  },[map, offers, selectedPoint]);
 
 
   return (
