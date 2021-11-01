@@ -1,26 +1,41 @@
-import { SortTypes } from '../../const';
+import {useState} from 'react';
+import {SortType} from '../../const';
 
+type SortProps = {
+  currentSort: string;
+  setCurrentSort: ((sort: string) => void);
+}
 
-function Sort(): JSX.Element {
+function Sort(props: SortProps):JSX.Element {
+  const {currentSort, setCurrentSort} = props;
+
+  const [isClicked, setClicked] = useState<boolean>(false);
   return (
     <form className="places__sorting" action="#" method="get">
-      <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex={0}>
-        Popular
+      <span className="places__sorting-caption">Sort by </span>
+      <span className="places__sorting-type" tabIndex={0}
+        onClick={() => {
+          setClicked(!isClicked);
+        }}
+      >
+        {currentSort}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className="places__options places__options--custom places__options--opened">
-        <li className="places__option places__option--active" tabIndex={0}>{SortTypes.POPULAR}</li>
-        <li className="places__option" tabIndex={0}>{SortTypes.PRICE_LESS}</li>
-        <li className="places__option" tabIndex={0}>{SortTypes.PRICE_MORE}</li>
-        <li className="places__option" tabIndex={0}>{SortTypes.RATING_TOP}</li>
+      <ul className={`places__options places__options--custom ${isClicked ? 'places__options--opened' : ''}`}>
+        {Object.values(SortType).map((sort) => (
+          <li key={sort} className={`places__option ${currentSort === sort ? 'places__option--active' : ''}`} tabIndex={0}
+            onClick={() => {
+              setCurrentSort(sort);
+            }}
+          >{sort}
+          </li>
+        ))}
       </ul>
     </form>
   );
 }
 
 export default Sort;
-
 

@@ -17,7 +17,7 @@ export const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensi
 
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-export const SortTypes = {
+export const SortType = {
   POPULAR: 'Popular',
   PRICE_LESS: 'Price: low to high',
   PRICE_MORE: 'Price: high to low',
