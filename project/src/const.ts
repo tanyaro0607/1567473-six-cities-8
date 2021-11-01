@@ -1,3 +1,5 @@
+import {OfferType} from './types/offer';
+
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
@@ -24,3 +26,22 @@ export const SortType = {
   RATING_TOP: 'Top rated first',
 };
 
+const sortByPriceLowToHigh = (offerA: OfferType, offerB: OfferType): number => offerA.price - offerB.price;
+
+const sortByPriceHighToLow = (offerA: OfferType, offerB: OfferType): number => offerB.price - offerA.price;
+
+const sortByRating = (offerA: OfferType, offerB: OfferType): number => offerB.rating - offerA.rating;
+
+export const getSortOffers = (sortType: string, offers: OfferType[]): OfferType[] => {
+  switch (sortType) {
+    case SortType.POPULAR:
+      return offers;
+    case SortType.PRICE_LESS:
+      return offers.slice().sort(sortByPriceLowToHigh);
+    case SortType.PRICE_MORE:
+      return offers.slice().sort(sortByPriceHighToLow);
+    case SortType.RATING_TOP:
+      return offers.slice().sort(sortByRating);
+    default: return offers;
+  }
+};
