@@ -24,12 +24,6 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-const fixedIcon = new Icon({
-  iconUrl: 'img/pin-active.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-});
-
 function Map({offers, city, selectedOffer, fixedOfferMarkerId}: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
@@ -44,7 +38,7 @@ function Map({offers, city, selectedOffer, fixedOfferMarkerId}: MapProps): JSX.E
         });
 
         marker
-          .setIcon(fixedIcon)
+          .setIcon(currentCustomIcon)
           .addTo(map);
       }
       return offer.id !== fixedOfferMarkerId;
