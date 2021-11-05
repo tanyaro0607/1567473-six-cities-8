@@ -1,3 +1,5 @@
+import {OfferType} from './types/offer';
+
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
@@ -11,8 +13,36 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+export const URL_MARKER_DEFAULT = '../img/pin.svg';
 
-export const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+export const URL_MARKER_CURRENT = '../img/pin-active.svg';
+
 
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+
+export const SortType = {
+  POPULAR: 'Popular',
+  PRICE_LESS: 'Price: low to high',
+  PRICE_MORE: 'Price: high to low',
+  RATING_TOP: 'Top rated first',
+};
+
+const sortByPriceLowToHigh = (offerA: OfferType, offerB: OfferType): number => offerA.price - offerB.price;
+
+const sortByPriceHighToLow = (offerA: OfferType, offerB: OfferType): number => offerB.price - offerA.price;
+
+const sortByRating = (offerA: OfferType, offerB: OfferType): number => offerB.rating - offerA.rating;
+
+export const getSortOffers = (sortType: string, offers: OfferType[]): OfferType[] => {
+  switch (sortType) {
+    case SortType.POPULAR:
+      return offers;
+    case SortType.PRICE_LESS:
+      return offers.slice().sort(sortByPriceLowToHigh);
+    case SortType.PRICE_MORE:
+      return offers.slice().sort(sortByPriceHighToLow);
+    case SortType.RATING_TOP:
+      return offers.slice().sort(sortByRating);
+    default: return offers;
+  }
+};

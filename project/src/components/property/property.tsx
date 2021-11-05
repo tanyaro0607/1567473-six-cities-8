@@ -16,7 +16,6 @@ type PropertyProps = {
 function Property(props: PropertyProps): JSX.Element {
   const {offers, reviews} = props;
   const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offers[0];
-  const ratingMark = 5 * rating / 100;
   const city = offers[0].city;
 
   return (
@@ -50,10 +49,10 @@ function Property(props: PropertyProps): JSX.Element {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${rating}%`}}/>
+                  <span style={{width: `${rating * 20}%`}}/>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{ratingMark}</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">

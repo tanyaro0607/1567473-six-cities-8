@@ -4,11 +4,10 @@ import {AppRoute} from '../../const';
 
 type OfferCardTypes = {
   offer: OfferType,
-  key: number;
   onHover: (offer: OfferType) => void;
 }
 
-function OfferCard({offer, key, onHover}: OfferCardTypes): JSX.Element {
+function OfferCard({offer, onHover}: OfferCardTypes): JSX.Element {
 
   const {
     isPremium,
@@ -21,7 +20,7 @@ function OfferCard({offer, key, onHover}: OfferCardTypes): JSX.Element {
   } = offer;
 
   return (
-    <article key={key} className="cities__place-card place-card" onMouseEnter={() => onHover(offer)}>
+    <article key={offer.id} className="cities__place-card place-card" onMouseEnter={() => onHover(offer)}>
       {isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
@@ -46,7 +45,7 @@ function OfferCard({offer, key, onHover}: OfferCardTypes): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating}%`}}/>
+            <span style={{width: `${rating * 20}%`}}/>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
