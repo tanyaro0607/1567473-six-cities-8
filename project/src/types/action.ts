@@ -1,11 +1,11 @@
-import { changeCity, foundOffers } from '../store/action';
+import { changeCity, loadOffers } from '../store/action';
 
 //все действия
 export enum ActionType {
   ChangeCity = 'city/changeCity',
-  FoundOffers = 'offers/foundOffers',
+  LoadOffers = 'data/loudOffers',
 }
 
 export type Actions =
   | ReturnType<typeof changeCity>
-  | ReturnType<typeof foundOffers>
+  | ReturnType<typeof loadOffers>

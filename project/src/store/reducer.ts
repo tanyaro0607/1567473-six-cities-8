@@ -13,7 +13,7 @@ const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionType.ChangeCity:
       return {...state, city: action.payload};
-    case ActionType.FoundOffers:
+    case ActionType.LoadOffers:
       return {...state, offers: action.payload};
     default:
       return state;
