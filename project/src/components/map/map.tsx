@@ -8,7 +8,7 @@ import { Icon, Marker } from 'leaflet';
 type MapProps = {
   city: OfferCity;
   offers: OfferType[];
-  selectedOffer?: OfferType | null;
+  selectedOffer?: OfferType | undefined;
   fixedOfferMarkerId?: number;
 }
 

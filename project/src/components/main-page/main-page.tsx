@@ -36,7 +36,7 @@ type ConnectedComponentProps = PropsFromRedux & MainPageProps;
 
 function MainPage({ offers, city, onChangeCity }: ConnectedComponentProps): JSX.Element {
 
-  // const [selectedPoint, setSelectedPoint] = useState<number | null>(null);
+  const [selectedOffer] = useState<OfferType | undefined>(undefined);
 
   const cityName = offers[0].city;
   const [currentSort, setCurrentSort] = useState<string>(SortType.POPULAR);
@@ -63,7 +63,7 @@ function MainPage({ offers, city, onChangeCity }: ConnectedComponentProps): JSX.
                 <Map
                   offers={offers}
                   city={cityName}
-                  // selectedPoint={selectedPoint}
+                  selectedOffer={selectedOffer}
                 />
               </section>
             </div>
