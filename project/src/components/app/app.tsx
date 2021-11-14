@@ -13,11 +13,6 @@ import {OfferType} from '../../types/offer';
 import Loading from '../loading/loading';
 import {State} from '../../types/state';
 
-type AppScreenProps = {
-  offers: OfferType[];
-  reviews: ReviewType[];
-}
-
 export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
 
@@ -29,10 +24,12 @@ const mapStateToProps = ({authorizationStatus, isDataLoaded}: State) => ({
 const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & AppScreenProps;
 
-function App(props: ConnectedComponentProps): JSX.Element {
-  const {authorizationStatus, isDataLoaded, offers, reviews} = props;
+function App(props: PropsFromRedux): JSX.Element {
+  const {authorizationStatus, isDataLoaded} = props;
+
+  const offers: OfferType[] = [];
+  const reviews: ReviewType[] = [];
 
   //если данные не загружены
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {

@@ -6,8 +6,6 @@ import thunk from 'redux-thunk';
 import {createAPI} from './services/api';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import App from './components/app/app';
-import {offers} from './mocks/offers';
-import {reviews} from './mocks/reviews';
 import {reducer} from './store/reducer';
 import {requireAuthorization} from './store/action';
 import {fetchOfferAction, checkAuthAction} from './store/api-actions';
@@ -31,10 +29,7 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store = {store}>
-      <App
-        offers= {offers} //передаем моки
-        reviews = {reviews}
-      />
+      <App/>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'));
