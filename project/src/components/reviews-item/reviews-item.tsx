@@ -2,7 +2,7 @@ import {ReviewType} from '../../types/review';
 
 type PlaceReviewProps = {
   review: ReviewType,
-  key: number;
+  key: string | number;
 }
 
 function Review({review, key}: PlaceReviewProps): JSX.Element {
