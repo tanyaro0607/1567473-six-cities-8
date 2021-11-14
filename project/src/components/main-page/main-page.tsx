@@ -13,6 +13,7 @@ import { State } from '../../types/state';
 import { changeCity as changeCityState } from '../../store/action';
 import { SortType, getSortOffers } from '../../const';
 import { useState } from 'react';
+import { cityDefault } from '../../mocks/city';
 
 
 type MainPageProps = {
@@ -38,7 +39,8 @@ function MainPage({ offers, city, onChangeCity }: ConnectedComponentProps): JSX.
 
   const [selectedOffer] = useState<OfferType | undefined>(undefined);
 
-  const cityName = offers[0].city;
+  const cityName = offers.length ? offers[0].city : cityDefault;
+
   const [currentSort, setCurrentSort] = useState<string>(SortType.POPULAR);
   const sortOffers = getSortOffers(currentSort, offers);
 
