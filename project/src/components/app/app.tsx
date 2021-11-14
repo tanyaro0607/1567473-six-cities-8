@@ -1,6 +1,6 @@
+import {connect, ConnectedProps} from 'react-redux';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-// import {AppRoute, AuthorizationStatus} from '../../const';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import MainPage from '../main-page/main-page';
 // import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import Favorites from '../favorites/favorites';
@@ -10,13 +10,38 @@ import Property from '../property/property';
 // import PrivateRoute from '../private-route/private-route';
 import {ReviewType} from '../../types/review';
 import {OfferType} from '../../types/offer';
+import Loading from '../loading/loading';
+import {State} from '../../types/state';
 
 type AppScreenProps = {
   offers: OfferType[];
   reviews: ReviewType[];
 }
 
-function App({offers, reviews}: AppScreenProps): JSX.Element {
+export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
+  authorizationStatus === AuthorizationStatus.Unknown;
+
+const mapStateToProps = ({authorizationStatus, isDataLoaded}: State) => ({
+  authorizationStatus,
+  isDataLoaded,
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & AppScreenProps;
+
+function App(props: ConnectedComponentProps): JSX.Element {
+  const {authorizationStatus, isDataLoaded, offers, reviews} = props;
+
+  //если данные не загружены
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+    return (
+      <Loading /> //то показываем компонент загрузки
+    );
+  }
+
+  //иначе рендерим страницу
   return (
     <BrowserRouter>
       <Switch>
@@ -47,5 +72,6 @@ function App({offers, reviews}: AppScreenProps): JSX.Element {
   );
 }
 
-export default App;
+export {App};
+export default connector(App);
 
