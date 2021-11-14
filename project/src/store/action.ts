@@ -1,7 +1,7 @@
-import {ActionType} from '../types/action';
+import { ActionType } from '../types/action';
 import { OfferType } from '../types/offer';
 import { ReviewType } from '../types/review';
-import {AuthorizationStatus} from '../const';
+import { AuthorizationStatus } from '../const';
 
 export const changeCity = (city: string) => ({
   type: ActionType.ChangeCity,
