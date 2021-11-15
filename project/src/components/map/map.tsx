@@ -8,8 +8,8 @@ import { Icon, Marker } from 'leaflet';
 type MapProps = {
   city: OfferCity;
   offers: OfferType[];
-  selectedOffer?: OfferType | null;
-  fixedOfferMarkerId?: number;
+  selectedOffer?: OfferType | undefined;
+  fixedOfferMarkerId?: string;
 }
 
 const defaultCustomIcon = new Icon({

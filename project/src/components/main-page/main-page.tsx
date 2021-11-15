@@ -13,6 +13,7 @@ import { State } from '../../types/state';
 import { changeCity as changeCityState } from '../../store/action';
 import { SortType, getSortOffers } from '../../const';
 import { useState } from 'react';
+import { cityDefault } from '../../mocks/city';
 
 
 type MainPageProps = {
@@ -36,9 +37,10 @@ type ConnectedComponentProps = PropsFromRedux & MainPageProps;
 
 function MainPage({ offers, city, onChangeCity }: ConnectedComponentProps): JSX.Element {
 
-  // const [selectedPoint, setSelectedPoint] = useState<number | null>(null);
+  const [selectedOffer] = useState<OfferType | undefined>(undefined);
 
-  const cityName = offers[0].city;
+  const cityName = offers.length ? offers[0].city : cityDefault;
+
   const [currentSort, setCurrentSort] = useState<string>(SortType.POPULAR);
   const sortOffers = getSortOffers(currentSort, offers);
 
@@ -63,7 +65,7 @@ function MainPage({ offers, city, onChangeCity }: ConnectedComponentProps): JSX.
                 <Map
                   offers={offers}
                   city={cityName}
-                  // selectedPoint={selectedPoint}
+                  selectedOffer={selectedOffer}
                 />
               </section>
             </div>

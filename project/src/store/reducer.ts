@@ -1,20 +1,36 @@
 import {ActionType, Actions} from '../types/action';
 import {State} from '../types/state';
-import {CITIES} from '../const';
-import {offers} from '../mocks/offers';
+import {CITIES, AuthorizationStatus} from '../const';
 
 //начальное состояние
 const initialState = {
   city: CITIES[0],
-  offers: offers,
+  offers: [],
+  reviews: [],
+  authorizationStatus: AuthorizationStatus.Unknown,
+  isDataLoaded: false, //данные не получены - показываем иконку загрузки
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionType.ChangeCity:
       return {...state, city: action.payload};
-    case ActionType.FoundOffers:
-      return {...state, offers: action.payload};
+    case ActionType.LoadOffers: {
+      const offers = action.payload;
+      return { ...state, offers };
+    }
+    case ActionType.LoadReviews: {
+      const reviews = action.payload;
+      return { ...state, reviews };
+    }
+    case ActionType.RequireAuthorization:
+      return {
+        ...state,
+        authorizationStatus: action.payload,
+        isDataLoaded: true,
+      };
+    case ActionType.RequireLogout:
+      return {...state, authorizationStatus: AuthorizationStatus.NoAuth};
     default:
       return state;
   }

@@ -1,10 +1,17 @@
-import {OfferType} from './types/offer';
+import { OfferType } from './types/offer';
 
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
   Favorites = '/favorites',
   Room = '/offer/:id'
+}
+
+export enum APIRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+  // Favorites = '/favorites',
 }
 
 export enum AuthorizationStatus {

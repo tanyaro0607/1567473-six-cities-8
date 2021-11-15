@@ -4,13 +4,17 @@ export type OfferType = {
   description: string;
   goods: string[];
   host: OfferHost;
-  id: number;
+  id: string | number;
   images: string[],
   isFavorite: boolean,
+  ['is_favorite']?: boolean,
   isPremium: boolean,
+  ['is_premium']?: boolean,
   location: OfferLocation;
   maxAdults: number,
+  ['max_adults']?: number,
   previewImage: string,
+  ['preview_image']?: string,
   price: number,
   rating: number,
   title: string,
@@ -34,7 +38,9 @@ export type OfferCity = {
 
 export type OfferHost = {
     avatarUrl: string,
-    id: number,
+    ['avatar_url']?: string,
+    id: string | number,
     isPro: boolean,
+    ['is_pro']?: boolean,
     name: string,
 };
