@@ -7,7 +7,7 @@ import Favorites from '../favorites/favorites';
 import Login from '../login/login';
 import NotFound from '../not-found/not-found';
 import Property from '../property/property';
-// import PrivateRoute from '../private-route/private-route';authorizationStatus
+// import PrivateRoute from '../private-route/private-route';
 import {ReviewType} from '../../types/review';
 import {OfferType} from '../../types/offer';
 import Loading from '../loading/loading';
