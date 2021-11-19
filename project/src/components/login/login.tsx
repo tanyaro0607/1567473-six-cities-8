@@ -29,6 +29,7 @@ function Login(): JSX.Element {
     evt.preventDefault();
 
     if (loginRef.current !== null && passwordRef.current !== null) {
+      //диспатчим децтсвие loginAction - асинхронное действие
       dispatch(loginAction({
         email: loginRef.current.value,
         password: passwordRef.current.value,

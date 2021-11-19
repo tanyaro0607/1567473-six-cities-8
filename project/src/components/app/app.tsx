@@ -7,7 +7,7 @@ import Favorites from '../favorites/favorites';
 import Login from '../login/login';
 import NotFound from '../not-found/not-found';
 import Property from '../property/property';
-// import PrivateRoute from '../private-route/private-route';
+import PrivateRoute from '../private-route/private-route';
 import {ReviewType} from '../../types/review';
 import {OfferType} from '../../types/offer';
 import Loading from '../loading/loading';
@@ -48,16 +48,15 @@ function App(props: PropsFromRedux): JSX.Element {
         <Route exact path={AppRoute.SignIn}>
           <Login />
         </Route>
-        {/* <PrivateRoute
+        <PrivateRoute
           exact
           path={AppRoute.Favorites}
           render={() => <Favorites offers={offers} />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
         >
-        </PrivateRoute> */}
-        <Route exact path={AppRoute.Favorites}>
+        </PrivateRoute>
+        {/* <Route exact path={AppRoute.Favorites}>
           <Favorites offers={offers} />
-        </Route>
+        </Route> */}
         <Route exact path={AppRoute.Room}>
           <Property offers={offers} reviews={reviews} />
         </Route>
