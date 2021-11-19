@@ -1,5 +1,5 @@
 import {connect, ConnectedProps} from 'react-redux';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import MainPage from '../main-page/main-page';
 // import FavoritesEmpty from '../favorites-empty/favorites-empty';
@@ -12,6 +12,7 @@ import {ReviewType} from '../../types/review';
 import {OfferType} from '../../types/offer';
 import Loading from '../loading/loading';
 import {State} from '../../types/state';
+import browserHistory from '../../browser-history';
 
 export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
@@ -40,7 +41,7 @@ function App(props: PropsFromRedux): JSX.Element {
 
   //иначе рендерим страницу
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.Main}>
           <MainPage/>

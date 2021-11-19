@@ -13,7 +13,7 @@ const mapStateToProps = ({authorizationStatus}: State) => ({
   authorizationStatus,
 });
 
-const connector = connect(mapStateToProps);
+const connector = connect(mapStateToProps); //подключаем компонент к store
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & PrivateRouteProps;
