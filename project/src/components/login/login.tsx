@@ -5,6 +5,7 @@ import {loginAction} from '../../store/api-actions';
 // import {ThunkAppDispatch} from '../../types/action';
 // import {AuthData} from '../../types/auth-data';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 // const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
 //   handleSubmit(authData: AuthData) {
@@ -31,6 +32,8 @@ function Login(): JSX.Element {
         email: loginRef.current.value,
         password: passwordRef.current.value,
       }));
+    }  else {
+      toast.error('login and password must contain atleast one number and one character');
     }
   };
 
