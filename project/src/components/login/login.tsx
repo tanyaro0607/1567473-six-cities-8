@@ -1,15 +1,13 @@
 import Logo from '../logo/logo';
 import {useRef, FormEvent} from 'react';
-import {useHistory} from 'react-router-dom';
 // import {connect, ConnectedProps} from 'react-redux';
 import {loginAction} from '../../store/api-actions';
 // import {ThunkAppDispatch} from '../../types/action';
 // import {AuthData} from '../../types/auth-data';
-import {AppRoute} from '../../const';
 import { useDispatch } from 'react-redux';
 
 // const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-//   onSubmit(authData: AuthData) {
+//   handleSubmit(authData: AuthData) {
 //     dispatch(loginAction(authData));
 //   },
 // });
@@ -21,7 +19,6 @@ function Login(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  const history = useHistory();
   const dispatch = useDispatch();
 
   //пользователь нажимает кнопку войти
@@ -78,7 +75,6 @@ function Login(): JSX.Element {
                 />
               </div>
               <button
-                onClick={() => history.push(AppRoute.Main)}
                 className="login__submit form__submit button"
                 type="submit"
               >Sign in

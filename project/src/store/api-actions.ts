@@ -1,7 +1,7 @@
 import {ThunkActionResult} from '../types/action';
-import {loadOffers, requireAuthorization, requireLogout} from './action';
+import {loadOffers, redirectToRoute, requireAuthorization, requireLogout} from './action';
 import {saveToken, dropToken, Token} from '../services/token';
-import {APIRoute, AuthorizationStatus} from '../const';
+import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
 import { BackOffer } from '../types/back-offer';
 import { adaptOffersToClient } from '../utils/adapter';
@@ -18,6 +18,7 @@ export const checkAuthAction = (): ThunkActionResult =>
     await api.get(APIRoute.Login)
       .then(() => {
         dispatch(requireAuthorization(AuthorizationStatus.Auth));
+        dispatch(redirectToRoute(AppRoute.Main)); //если пользователь авторизован, перейти на главную
       });
   };
 
