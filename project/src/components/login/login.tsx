@@ -1,6 +1,42 @@
 import Logo from '../logo/logo';
+import {useRef, FormEvent} from 'react';
+// import {connect, ConnectedProps} from 'react-redux';
+import {loginAction} from '../../store/api-actions';
+// import {ThunkAppDispatch} from '../../types/action';
+// import {AuthData} from '../../types/auth-data';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+
+// const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
+//   handleSubmit(authData: AuthData) {
+//     dispatch(loginAction(authData));
+//   },
+// });
+
+// const connector = connect(null, mapDispatchToProps);
 
 function Login(): JSX.Element {
+
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const dispatch = useDispatch();
+
+  //пользователь нажимает кнопку войти
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      //диспатчим децтсвие loginAction - асинхронное действие
+      dispatch(loginAction({
+        email: loginRef.current.value,
+        password: passwordRef.current.value,
+      }));
+    }  else {
+      toast.error('login and password must contain atleast one number and one character');
+    }
+  };
+
   return (
     <div className="page page--gray page--login">
       <header className="header">
@@ -15,16 +51,37 @@ function Login(): JSX.Element {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post">
+            <form className="login__form form"
+              action="#"
+              method="post"
+              onSubmit={handleSubmit}
+            >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
-                <input className="login__input form__input" type="email" name="email" placeholder="Email" required/>
+                <input
+                  ref={loginRef}
+                  className="login__input form__input"
+                  type="email" name="email"
+                  placeholder="Email"
+                  required
+                />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" type="password" name="password" placeholder="Password" required/>
+                <input
+                  ref={passwordRef}
+                  className="login__input form__input"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  required
+                />
               </div>
-              <button className="login__submit form__submit button" type="submit">Sign in</button>
+              <button
+                className="login__submit form__submit button"
+                type="submit"
+              >Sign in
+              </button>
             </form>
           </section>
           <section className="locations locations--login locations--current">

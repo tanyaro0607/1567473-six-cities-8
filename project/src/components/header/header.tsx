@@ -1,6 +1,7 @@
 import Navigation from '../navigation/navigation';
 import Logo from '../logo/logo';
 
+
 function Header(): JSX.Element {
   return (
     <header className="header">

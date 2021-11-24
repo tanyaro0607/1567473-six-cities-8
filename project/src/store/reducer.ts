@@ -8,6 +8,7 @@ const initialState = {
   offers: [],
   reviews: [],
   authorizationStatus: AuthorizationStatus.Unknown,
+  authorizationEmail: null,
   isDataLoaded: false, //данные не получены - показываем иконку загрузки
 };
 
@@ -27,6 +28,7 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {
         ...state,
         authorizationStatus: action.payload,
+        authorizationEmail: action.payload,
         isDataLoaded: true,
       };
     case ActionType.RequireLogout:
