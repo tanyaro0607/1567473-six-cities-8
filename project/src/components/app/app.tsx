@@ -1,5 +1,5 @@
 import {connect, ConnectedProps} from 'react-redux';
-import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
+import {Switch, Route, Redirect, Router as BrowserRouter} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import MainPage from '../main-page/main-page';
 // import FavoritesEmpty from '../favorites-empty/favorites-empty';
@@ -49,8 +49,12 @@ function App(props: PropsFromRedux): JSX.Element {
         <Route
           exact
           path={AppRoute.SignIn}
+          render={() => (
+            authorizationStatus === AuthorizationStatus.Auth
+              ? <Redirect to={AppRoute.Main} />
+              : <Login />
+          )}
         >
-          <Login />
         </Route>
         <PrivateRoute
           exact

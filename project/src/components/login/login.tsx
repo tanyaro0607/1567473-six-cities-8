@@ -61,7 +61,8 @@ function Login(): JSX.Element {
                 <input
                   ref={loginRef}
                   className="login__input form__input"
-                  type="email" name="email"
+                  type="email"
+                  name="email"
                   placeholder="Email"
                   required
                 />
