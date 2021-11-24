@@ -15,6 +15,8 @@ import { toast } from 'react-toastify';
 
 // const connector = connect(null, mapDispatchToProps);
 
+const ERROR_MESSAGE = 'login and password must contain atleast one number and one character';
+
 function Login(): JSX.Element {
 
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -33,7 +35,7 @@ function Login(): JSX.Element {
         password: passwordRef.current.value,
       }));
     }  else {
-      toast.error('login and password must contain atleast one number and one character');
+      toast.error(ERROR_MESSAGE);
     }
   };
 

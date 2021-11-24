@@ -5,6 +5,9 @@ import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
 import { BackOffer } from '../types/back-offer';
 import { adaptOffersToClient } from '../utils/adapter';
+import {toast} from 'react-toastify';
+
+const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться';
 
 export const fetchOfferAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
@@ -15,12 +18,15 @@ export const fetchOfferAction = (): ThunkActionResult =>
 //проверка на авторизацию
 export const checkAuthAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    await api.get(APIRoute.Login)
-      .then(() => {
-        dispatch(requireAuthorization(AuthorizationStatus.Auth));
-        dispatch(redirectToRoute(AppRoute.Main)); //если пользователь авторизован, перейти на главную
-      });
+    try {
+      await api.get(APIRoute.Login);
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      dispatch(redirectToRoute(AppRoute.Main)); //если пользователь авторизован, перейти на главную
+    } catch {
+      toast.info(AUTH_FAIL_MESSAGE);
+    }
   };
+
 
 //действие для авторизации
 export const loginAction = ({email: email, password}: AuthData): ThunkActionResult =>

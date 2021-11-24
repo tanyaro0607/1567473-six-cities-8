@@ -28,7 +28,7 @@ export const createAPI = (onUnauthorized: UnauthorizedCallback): AxiosInstance =
       //проверяем статус ответа
       //если ошибка 401(Unauthorized)
       if (response?.status === HttpCode.Unauthorized) {
-        return onUnauthorized();
+        onUnauthorized();
       }
 
       return Promise.reject(error);
