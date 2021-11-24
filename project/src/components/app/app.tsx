@@ -8,8 +8,6 @@ import Login from '../login/login';
 import NotFound from '../not-found/not-found';
 import Property from '../property/property';
 import PrivateRoute from '../private-route/private-route';
-import {ReviewType} from '../../types/review';
-import {OfferType} from '../../types/offer';
 import Loading from '../loading/loading';
 import {State} from '../../types/state';
 import browserHistory from '../../browser-history';
@@ -28,9 +26,6 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function App(props: PropsFromRedux): JSX.Element {
   const {authorizationStatus, isDataLoaded} = props;
-
-  const offers: OfferType[] = [];
-  const reviews: ReviewType[] = [];
 
   //если данные не загружены
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
@@ -59,14 +54,11 @@ function App(props: PropsFromRedux): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.Favorites}
-          render={() => <Favorites offers={offers} />}
+          render={() => <Favorites />}
         >
         </PrivateRoute>
-        {/* <Route exact path={AppRoute.Favorites}>
-          <Favorites offers={offers} />
-        </Route> */}
         <Route exact path={AppRoute.Room}>
-          <Property offers={offers} reviews={reviews} />
+          <Property />
         </Route>
         <Route>
           <NotFound />
