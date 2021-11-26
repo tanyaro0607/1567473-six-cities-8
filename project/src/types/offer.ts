@@ -4,7 +4,7 @@ export type OfferType = {
   description: string;
   goods: string[];
   host: OfferHost;
-  id: string | number;
+  id: string;
   images: string[],
   isFavorite: boolean,
   ['is_favorite']?: boolean,
@@ -39,7 +39,7 @@ export type OfferCity = {
 export type OfferHost = {
     avatarUrl: string,
     ['avatar_url']?: string,
-    id: string | number,
+    id: string,
     isPro: boolean,
     ['is_pro']?: boolean,
     name: string,

@@ -1,6 +1,6 @@
 import {ActionType, Actions} from '../types/action';
 import {State} from '../types/state';
-import {CITIES, AuthorizationStatus} from '../const';
+import {CITIES, AuthorizationStatus, SendingReviewStatus} from '../const';
 
 //начальное состояние
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
   isDataLoaded: false, //данные не получены - показываем иконку загрузки
   offer: null,
   offerError: false,
+  sendingCommentStatus: SendingReviewStatus.NotSent,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
@@ -39,6 +40,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return { ...state, offer: action.payload, isDataLoaded: true };
     case ActionType.SetOfferError:
       return { ...state, offerError: true };
+    case ActionType.ChangeSendingReviewStatus:
+      return {...state, sendingCommentStatus: action.payload};
     default:
       return state;
   }

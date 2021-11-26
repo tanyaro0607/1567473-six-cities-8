@@ -12,11 +12,11 @@ export type BackOffer = {
   goods: string[],
   host: {
     ['avatar_url']: string,
-    id: string | number,
+    id: string,
     ['is_pro']: boolean,
     name: string,
   },
-  id: string | number,
+  id: string,
   images: string[],
   ['is_favorite']: boolean,
   ['is_premium']: boolean,

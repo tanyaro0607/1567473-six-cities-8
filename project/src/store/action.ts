@@ -1,7 +1,7 @@
 import { ActionType } from '../types/action';
 import { OfferType } from '../types/offer';
 import { ReviewType } from '../types/review';
-import { AppRoute, AuthorizationStatus } from '../const';
+import { AppRoute, AuthorizationStatus, SendingReviewStatus } from '../const';
 
 export const changeCity = (city: string) => ({
   type: ActionType.ChangeCity,
@@ -41,4 +41,10 @@ export const selectOffer = (offer: OfferType) => ({
 //ошибка 404 - если предложение не сущ
 export const setOfferError = () => ({
   type: ActionType.SetOfferError,
+} as const);
+
+//статус отправки комментария
+export const changeSendingReviewStatus = (sendingReviewStatus: SendingReviewStatus) => ({
+  type: ActionType.ChangeSendingReviewStatus,
+  payload: sendingReviewStatus,
 } as const);
