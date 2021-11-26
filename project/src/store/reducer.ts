@@ -36,7 +36,7 @@ const reducer = (state: State = initialState, action: Actions): State => {
     case ActionType.RequireLogout:
       return {...state, authorizationStatus: AuthorizationStatus.NoAuth};
     case ActionType.SelectOffer:
-      return { ...state, offer: action.payload };
+      return { ...state, offer: action.payload, isDataLoaded: true };
     case ActionType.SetOfferError:
       return { ...state, offerError: true };
     default:

@@ -1,5 +1,5 @@
 import Header from '../header/header';
-import SubmitFormReview from '../submit-form-review/submit-form-review';
+import FormReview from '../form-review/form-review';
 import Map from '../../components/map/map';
 import OffersListNear from '../offers-list-near/offers-list-near';
 import ReviewsList from '../reviews-list/reviews-list';
@@ -21,7 +21,6 @@ const connector = connect(mapStateToProps); //подключаем компон�
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function Property(props: PropsFromRedux): JSX.Element {
-  const {offers, reviews} = props;
   // const {offers, reviews, offer, offerError, isDataLoaded} = props;
 
   // if (!offerError) {
@@ -35,6 +34,7 @@ function Property(props: PropsFromRedux): JSX.Element {
   // const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offers[0];
   // const city = offer.city;
 
+  const {offers, reviews} = props;
   const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offers[0];
   const city = offers[0].city;
 
@@ -117,7 +117,7 @@ function Property(props: PropsFromRedux): JSX.Element {
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                 <ReviewsList offer={offers[0]} reviews={reviews} />
-                <SubmitFormReview />
+                <FormReview />
               </section>
             </div>
           </div>

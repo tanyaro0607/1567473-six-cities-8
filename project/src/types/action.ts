@@ -6,7 +6,7 @@ import { State } from '../types/state';
 //все действия
 export enum ActionType {
   ChangeCity = 'main/changeCity',
-  LoadOffers = 'data/loudOffers',
+  LoadOffers = 'data/loadOffers',
   LoadReviews = 'data/loadReviews',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
