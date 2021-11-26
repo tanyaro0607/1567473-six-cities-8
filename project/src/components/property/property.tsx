@@ -5,10 +5,15 @@ import OffersListNear from '../offers-list-near/offers-list-near';
 import ReviewsList from '../reviews-list/reviews-list';
 import {State} from '../../types/state';
 import {connect, ConnectedProps} from 'react-redux';
+// import Loading from '../loading/loading';
+// import NotFound from '../not-found/not-found';
 
-const mapStateToProps = ({offers, reviews}: State) => ({
+const mapStateToProps = ({offers, reviews, offer, offerError, isDataLoaded}: State) => ({
   reviews,
   offers,
+  offer,
+  offerError,
+  isDataLoaded,
 });
 
 const connector = connect(mapStateToProps); //подключаем компонент к store
@@ -17,6 +22,19 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function Property(props: PropsFromRedux): JSX.Element {
   const {offers, reviews} = props;
+  // const {offers, reviews, offer, offerError, isDataLoaded} = props;
+
+  // if (!offerError) {
+  //   if ( isDataLoaded  || !offer) {
+  //     return <Loading/>;
+  //   }
+  // } else {
+  //   return <NotFound/>;
+  // }
+
+  // const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offers[0];
+  // const city = offer.city;
+
   const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offers[0];
   const city = offers[0].city;
 

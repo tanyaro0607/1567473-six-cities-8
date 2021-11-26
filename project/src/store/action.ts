@@ -31,3 +31,14 @@ export const redirectToRoute = (url: AppRoute) => ({
   type: ActionType.RedirectToRoute,
   payload: url,
 } as const);
+
+//загрузка выбранного предложения
+export const selectOffer = (offer: OfferType) => ({
+  type: ActionType.SelectOffer,
+  payload: offer,
+} as const);
+
+//ошибка 404 - если предложение не сущ
+export const setOfferError = () => ({
+  type: ActionType.SetOfferError,
+} as const);

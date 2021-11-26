@@ -10,6 +10,8 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   authorizationEmail: null,
   isDataLoaded: false, //данные не получены - показываем иконку загрузки
+  offer: null,
+  offerError: false,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
@@ -33,6 +35,10 @@ const reducer = (state: State = initialState, action: Actions): State => {
       };
     case ActionType.RequireLogout:
       return {...state, authorizationStatus: AuthorizationStatus.NoAuth};
+    case ActionType.SelectOffer:
+      return { ...state, offer: action.payload };
+    case ActionType.SetOfferError:
+      return { ...state, offerError: true };
     default:
       return state;
   }

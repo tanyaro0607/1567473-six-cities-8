@@ -10,4 +10,6 @@ export type State = {
   authorizationStatus: AuthorizationStatus,
   authorizationEmail?: string | null,
   isDataLoaded: boolean,
+  offer: OfferType | null,
+  offerError: boolean;
 }
