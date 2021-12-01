@@ -1,10 +1,10 @@
 import {ThunkActionResult} from '../types/action';
-import {loadOffers, redirectToRoute, requireAuthorization, requireLogout} from './action';
+import {loadOffers, redirectToRoute, requireAuthorization, requireLogout, selectOffer} from './action';
 import {saveToken, dropToken, Token} from '../services/token';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
 import { BackOffer } from '../types/back-offer';
-import { adaptOffersToClient } from '../utils/adapter';
+import { adaptOffersToClient, adaptOfferToClient } from '../utils/adapter';
 import {toast} from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться';
@@ -42,4 +42,11 @@ export const logoutAction = (): ThunkActionResult =>
     api.delete(APIRoute.Logout);
     dropToken();
     dispatch(requireLogout());
+  };
+
+//поиск выбранного оффера
+export const loadSelectOffer = (id: string): ThunkActionResult =>
+  async (dispatch, _getState, api) => {
+    const offer = await api.get(`${APIRoute.Offers}/${id}`);
+    dispatch(selectOffer(adaptOfferToClient(offer.data)));
   };
