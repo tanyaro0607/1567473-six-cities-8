@@ -1,7 +1,7 @@
 import { OfferType } from './offer';
 import { ReviewType } from './review';
 
-import {AuthorizationStatus} from '../const';
+import {AuthorizationStatus, SendingReviewStatus} from '../const';
 
 export type State = {
   city: string,
@@ -10,4 +10,7 @@ export type State = {
   authorizationStatus: AuthorizationStatus,
   authorizationEmail?: string | null,
   isDataLoaded: boolean,
+  offer: OfferType | null,
+  offerError: boolean;
+  sendingCommentStatus: SendingReviewStatus,
 }

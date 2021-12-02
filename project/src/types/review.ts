@@ -1,14 +1,14 @@
 export type ReviewType = {
   comment: string;
   date: string;
-  id: string | number,
+  id: string,
   rating: number,
   user: ReviewUser;
 };
 
 export type ReviewUser = {
   avatarUrl: string,
-  id: string | number,
+  id: string,
   isPro: boolean,
   name: string,
 };

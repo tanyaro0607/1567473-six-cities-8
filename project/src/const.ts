@@ -11,6 +11,7 @@ export enum APIRoute {
   Offers = '/hotels',
   Login = '/login',
   Logout = '/logout',
+  Reviews = '/reviews',
   // Favorites = '/favorites',
 }
 
@@ -18,6 +19,11 @@ export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
+}
+
+export enum SendingReviewStatus {
+  Sent = 'SENT',
+  NotSent = 'NOT_SENT',
 }
 
 export const URL_MARKER_DEFAULT = '../img/pin.svg';

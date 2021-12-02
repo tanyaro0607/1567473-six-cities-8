@@ -1,6 +1,6 @@
 import { FormEvent } from 'react';
 
-function SubmitFormReview(): JSX.Element {
+function FormReview(): JSX.Element {
   return (
     <form
       className="reviews__form form"
@@ -58,4 +58,4 @@ function SubmitFormReview(): JSX.Element {
   );
 }
 
-export default SubmitFormReview;
+export default FormReview;

@@ -1,19 +1,39 @@
-// import OfferCard from '../offer-card/offer-card';
 import Header from '../header/header';
-import SubmitFormReview from '../submit-form-review/submit-form-review';
-// import Review from '../review/review';
-import {OfferType} from '../../types/offer';
-import {ReviewType} from '../../types/review';
+import FormReview from '../form-review/form-review';
 import Map from '../../components/map/map';
 import OffersListNear from '../offers-list-near/offers-list-near';
 import ReviewsList from '../reviews-list/reviews-list';
+import {State} from '../../types/state';
+import {connect, ConnectedProps} from 'react-redux';
+// import Loading from '../loading/loading';
+// import NotFound from '../not-found/not-found';
 
-type PropertyProps = {
-  offers: OfferType[];
-  reviews: ReviewType[];
-};
+const mapStateToProps = ({offers, reviews, offer, offerError, isDataLoaded}: State) => ({
+  reviews,
+  offers,
+  offer,
+  offerError,
+  isDataLoaded,
+});
 
-function Property(props: PropertyProps): JSX.Element {
+const connector = connect(mapStateToProps); //подключаем компонент к store
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function Property(props: PropsFromRedux): JSX.Element {
+  // const {offers, reviews, offer, offerError, isDataLoaded} = props;
+
+  // if (!offerError) {
+  //   if ( isDataLoaded  || !offer) {
+  //     return <Loading/>;
+  //   }
+  // } else {
+  //   return <NotFound/>;
+  // }
+
+  // const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offers[0];
+  // const city = offer.city;
+
   const {offers, reviews} = props;
   const {images, bedrooms, goods, maxAdults, description, host, isFavorite, id, title, isPremium, price, rating, type} = offers[0];
   const city = offers[0].city;
@@ -96,8 +116,12 @@ function Property(props: PropertyProps): JSX.Element {
               </div>
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-                <ReviewsList offer={offers[0]} reviews={reviews} />
-                <SubmitFormReview />
+                <ReviewsList
+                  offer={offers[0]}
+                  // offer={offer}
+                  reviews={reviews}
+                />
+                <FormReview />
               </section>
             </div>
           </div>
@@ -119,4 +143,4 @@ function Property(props: PropertyProps): JSX.Element {
   );
 }
 
-export default Property;
+export default connector(Property);
