@@ -71,3 +71,5 @@ function App(props: PropsFromRedux): JSX.Element {
 export {App};
 export default connector(App);
 
+//test
+
